@@ -1,7 +1,14 @@
 <template>
     <main class="container">
-        <div class="row my-4 gy-4">
-            <div v-for="project in data" class="col col-md-4">
+        <div class=" my-4 gy-4 d-flex justify-content-between">
+            <div><button v-if="this.data.current_page > 1" type="button" class="btn btn-primary">INDIETRO</button></div>
+            <div>
+                <h3>Page:{{ this.data.current_page }}</h3>
+            </div>
+            <div><button type="button" class="btn btn-primary">AVANTI</button></div>
+        </div>
+        <div class="row my-2 gy-2">
+            <div v-for="project in data.data" class="col col-md-4">
                 <AppCard :image="project.image" :title="project.title" :description="project.description" />
             </div>
         </div>
