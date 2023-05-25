@@ -6,7 +6,10 @@
             <div>
                 <h3>Page:{{ this.data.current_page }}</h3>
             </div>
-            <div><button @click="next_page" type="button" class="btn btn-primary">AVANTI</button></div>
+            <div v-if="!(this.data.last_page === this.data.current_page)"><button @click="next_page" type="button"
+                    class="btn btn-primary">AVANTI</button>
+            </div>
+            <!-- v-if="this.data.current_page === this.data.last_page" -->
         </div>
         <div class="row my-2 gy-2">
             <div v-for="project in data.data" class="col col-md-4">
@@ -31,7 +34,9 @@ export default {
             this.$emit('previous_page');
         },
         next_page() {
+            console.log(this.data.current_page)
             this.$emit('next_page');
+
         }
     },
 }
