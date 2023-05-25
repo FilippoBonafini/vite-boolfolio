@@ -13,11 +13,6 @@ import AppCard from './AppCard.vue';
 
 export default {
     name: "AppMain",
-    data() {
-        return {
-            contentLenght: 100
-        };
-    },
     props: {
         data: Object
     },
