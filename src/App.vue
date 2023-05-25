@@ -12,6 +12,8 @@ export default {
       apiUrls: {
         projects: 'projects'
       },
+      next_page_url: '',
+      previous_page_url: '',
       projects: []
     }
   },
@@ -21,9 +23,33 @@ export default {
   methods: {
     getProjects(url) {
       axios.get(this.apiBaseUrl + url).then((response) => {
-        console.log(response)
         this.projects = response.data.results;
-        console.log(this.projects)
+        this.next_page_url = response.data.results.next_page_url
+        if (response.data.results.prev_page_url) {
+          this.previous_page_url = response.data.results.prev_page_url
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    previous_page() {
+      axios.get(this.previous_page_url).then((response) => {
+        this.projects = response.data.results;
+        this.next_page_url = response.data.results.next_page_url
+        if (response.data.results.prev_page_url) {
+          this.previous_page_url = response.data.results.prev_page_url
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    next_page() {
+      axios.get(this.next_page_url).then((response) => {
+        this.projects = response.data.results;
+        this.next_page_url = response.data.results.next_page_url
+        if (response.data.results.prev_page_url) {
+          this.previous_page_url = response.data.results.prev_page_url
+        }
       }).catch((error) => {
         console.log(error)
       })
@@ -39,7 +65,7 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain :data="projects" />
+  <AppMain :data="projects" @previous_page="previous_page" @next_page="next_page" />
   <AppFooter />
 </template>
 
