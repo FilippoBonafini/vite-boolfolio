@@ -2,26 +2,25 @@
     <main class="container">
         <div class="row my-4 gy-4">
             <div v-for="project in data" class="col col-md-4">
-                <div class="card">
-                    <img v-if="project.image" :src="project.image" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ project.title }}</h5>
-                        <p v-if="project.description" class="card-text">{{ project.description.substring(0,
-                            this.contentLenght) }}</p>
-                    </div>
-                </div>
+                <AppCard :image="project.image" :title="project.title" :description="project.description" />
             </div>
         </div>
     </main>
 </template>
 
 <script>
+import AppCard from './AppCard.vue';
+
 export default {
-    name: 'AppMain',
+    name: "AppMain",
+    data() {
+        return {
+            contentLenght: 100
+        };
+    },
     props: {
         data: Object
-    }
+    },
+    components: { AppCard }
 }
 </script>
-
-<style></style>
