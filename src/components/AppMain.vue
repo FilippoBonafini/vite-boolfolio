@@ -3,10 +3,11 @@
         <div class="row my-4 gy-4">
             <div v-for="project in data" class="col col-md-4">
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img v-if="project.image" :src="project.image" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ project.title }}</h5>
-                        <p class="card-text">{{ project.description }}</p>
+                        <p v-if="project.description" class="card-text">{{ project.description.substring(0,
+                            this.contentLenght) }}</p>
                     </div>
                 </div>
             </div>
