@@ -26,65 +26,21 @@ export default {
     getProjects(url) {
       axios.get(url).then((response) => {
         this.projects = response.data.results;
-        if (!this.last_page_url) {
-          this.last_page_url = response.data.results.last_page_url
-        }
-        if (!this.first_page_url) {
-          this.first_page_url = response.data.results.first_page_url
-        }
+        // SE L'URL DELLA PRIMA PAGINA NON E' STATO SETTATO... SETTALO 
+        this.first_page_url = !this.first_page_url ? response.data.results.first_page_url : this.first_page_url;
+
+        // SE L'URL DELL'ULTIMA PAGINA NON E' STATO SETTATO... SETTALO 
+        this.last_page_url = !this.last_page_url ? response.data.results.last_page_url : this.last_page_url;
+
+        // SETTA L'URL DELLA PROSSIMA PAGINA 
         this.next_page_url = response.data.results.next_page_url
-        if (response.data.results.prev_page_url) {
-          this.previous_page_url = response.data.results.prev_page_url
-        }
+
+        // SE E' PRESENTE NEI RISULTATI, SETTA L'URL DELLA PAGINA PRECEDENTE 
+        this.previous_page_url = response.data.results.prev_page_url ? response.data.results.prev_page_url : this.previous_page_url;
       }).catch((error) => {
         console.log(error)
       })
-    },
-    // previous_page() {
-    //   axios.get(this.previous_page_url).then((response) => {
-    //     this.projects = response.data.results;
-    //     this.next_page_url = response.data.results.next_page_url
-    //     if (response.data.results.prev_page_url) {
-    //       this.previous_page_url = response.data.results.prev_page_url
-    //     }
-    //   }).catch((error) => {
-    //     console.log(error)
-    //   })
-    // },
-    // next_page() {
-    //   axios.get(this.next_page_url).then((response) => {
-    //     this.projects = response.data.results;
-    //     this.next_page_url = response.data.results.next_page_url
-    //     if (response.data.results.prev_page_url) {
-    //       this.previous_page_url = response.data.results.prev_page_url
-    //     }
-    //   }).catch((error) => {
-    //     console.log(error)
-    //   })
-    // },
-    // first_page() {
-    //   axios.get(this.first_page_url).then((response) => {
-    //     this.projects = response.data.results;
-    //     this.next_page_url = response.data.results.next_page_url
-    //     if (response.data.results.prev_page_url) {
-    //       this.previous_page_url = response.data.results.prev_page_url
-    //     }
-    //   }).catch((error) => {
-    //     console.log(error)
-    //   })
-    // },
-    // last_page() {
-    //   axios.get(this.last_page_url).then((response) => {
-    //     this.projects = response.data.results;
-    //     this.next_page_url = response.data.results.next_page_url
-    //     if (response.data.results.prev_page_url) {
-    //       this.previous_page_url = response.data.results.prev_page_url
-    //     }
-    //   }).catch((error) => {
-    //     console.log(error)
-    //   })
-    // }
-
+    }
   },
   components: {
     AppHeader,
