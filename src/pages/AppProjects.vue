@@ -1,17 +1,17 @@
 <template>
-    <main class="container">
-        <div class="d-flex justify-content-start align-items-center">
-            <div class="flex-fill">
+    <main class="container pt-4">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex gap-3">
                 <button :disabled="this.projects.current_page === 1" @click="getProjects(first_page_url)"
                     class="btn btn-primary">PRIMA PAGINA</button>
                 <button :disabled="this.projects.current_page === 1" @click="getProjects(previous_page_url)"
                     class="btn btn-primary">INDIETRO</button>
 
             </div>
-            <div class="flex-fill text-center">
+            <div class="d-flex text-center">
                 <h3>Page: {{ this.projects.current_page }}</h3>
             </div>
-            <div class="flex-fill text-end">
+            <div class="d-flex gap-3">
                 <button :disabled="this.projects.last_page === this.projects.current_page"
                     @click="getProjects(next_page_url)" type="button" class="btn btn-primary">AVANTI</button>
                 <button :disabled="this.projects.last_page === this.projects.current_page"
