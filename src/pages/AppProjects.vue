@@ -1,21 +1,32 @@
 <template>
     <main class="container">
-        <div class=" my-4 gy-4 d-flex justify-content-between">
-            <div v-if="this.projects.current_page > 1" type="button" class="d-flex gap-3">
-                <button @click="getProjects(first_page_url)" class="btn btn-primary">PRIMA PAGINA</button>
-                <button @click="getProjects(previous_page_url)" class="btn btn-primary">INDIETRO</button>
+        <div class="d-flex justify-content-start align-items-center">
+            <div class="flex-fill">
+                <button :disabled="this.projects.current_page === 1" @click="getProjects(first_page_url)"
+                    class="btn btn-primary">PRIMA PAGINA</button>
+                <button :disabled="this.projects.current_page === 1" @click="getProjects(previous_page_url)"
+                    class="btn btn-primary">INDIETRO</button>
+
             </div>
-            <div>
-                <h3>Page:{{ this.projects.current_page }}</h3>
+            <div class="flex-fill text-center">
+                <h3>Page: {{ this.projects.current_page }}</h3>
             </div>
-            <div v-if="!(this.projects.last_page === this.projects.current_page)" class="d-flex gap-3">
-                <button @click="getProjects(next_page_url)" type="button" class="btn btn-primary">AVANTI</button>
-                <button @click="getProjects(last_page_url)" class="btn btn-primary">ULTIMA PAGINA</button>
+            <div class="flex-fill text-end">
+                <button :disabled="this.projects.last_page === this.projects.current_page"
+                    @click="getProjects(next_page_url)" type="button" class="btn btn-primary">AVANTI</button>
+                <button :disabled="this.projects.last_page === this.projects.current_page"
+                    @click="getProjects(last_page_url)" class="btn btn-primary">ULTIMA PAGINA</button>
+
             </div>
         </div>
-        <div class="row my-2 gy-4">
+
+
+
+
+        <div class="row my-2 gy-4 col">
             <div v-for="project in projects.data" class="col col-md-4">
-                <AppCard :image="project.image" :title="project.title" :description="project.description" />
+                <AppCard :image="project.image" :title="project.title" :slug="project.slug"
+                    :description="project.description" />
             </div>
         </div>
     </main>
@@ -26,7 +37,7 @@ import axios from 'axios';
 import AppCard from '../components/AppCard.vue';
 
 export default {
-    name: "AppMain",
+    name: "AppProjects",
 
     components: { AppCard },
 
