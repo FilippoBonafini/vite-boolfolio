@@ -20,11 +20,11 @@ export default {
     }
   },
   created() {
-    this.getProjects(this.apiUrls.projects)
+    this.getProjects((this.apiBaseUrl + this.apiUrls.projects))
   },
   methods: {
     getProjects(url) {
-      axios.get(this.apiBaseUrl + url).then((response) => {
+      axios.get(url).then((response) => {
         this.projects = response.data.results;
         this.last_page_url = response.data.results.last_page_url
         this.first_page_url = response.data.results.first_page_url
@@ -36,50 +36,50 @@ export default {
         console.log(error)
       })
     },
-    previous_page() {
-      axios.get(this.previous_page_url).then((response) => {
-        this.projects = response.data.results;
-        this.next_page_url = response.data.results.next_page_url
-        if (response.data.results.prev_page_url) {
-          this.previous_page_url = response.data.results.prev_page_url
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-    next_page() {
-      axios.get(this.next_page_url).then((response) => {
-        this.projects = response.data.results;
-        this.next_page_url = response.data.results.next_page_url
-        if (response.data.results.prev_page_url) {
-          this.previous_page_url = response.data.results.prev_page_url
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-    first_page() {
-      axios.get(this.first_page_url).then((response) => {
-        this.projects = response.data.results;
-        this.next_page_url = response.data.results.next_page_url
-        if (response.data.results.prev_page_url) {
-          this.previous_page_url = response.data.results.prev_page_url
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-    last_page() {
-      axios.get(this.last_page_url).then((response) => {
-        this.projects = response.data.results;
-        this.next_page_url = response.data.results.next_page_url
-        if (response.data.results.prev_page_url) {
-          this.previous_page_url = response.data.results.prev_page_url
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-    }
+    // previous_page() {
+    //   axios.get(this.previous_page_url).then((response) => {
+    //     this.projects = response.data.results;
+    //     this.next_page_url = response.data.results.next_page_url
+    //     if (response.data.results.prev_page_url) {
+    //       this.previous_page_url = response.data.results.prev_page_url
+    //     }
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
+    // },
+    // next_page() {
+    //   axios.get(this.next_page_url).then((response) => {
+    //     this.projects = response.data.results;
+    //     this.next_page_url = response.data.results.next_page_url
+    //     if (response.data.results.prev_page_url) {
+    //       this.previous_page_url = response.data.results.prev_page_url
+    //     }
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
+    // },
+    // first_page() {
+    //   axios.get(this.first_page_url).then((response) => {
+    //     this.projects = response.data.results;
+    //     this.next_page_url = response.data.results.next_page_url
+    //     if (response.data.results.prev_page_url) {
+    //       this.previous_page_url = response.data.results.prev_page_url
+    //     }
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
+    // },
+    // last_page() {
+    //   axios.get(this.last_page_url).then((response) => {
+    //     this.projects = response.data.results;
+    //     this.next_page_url = response.data.results.next_page_url
+    //     if (response.data.results.prev_page_url) {
+    //       this.previous_page_url = response.data.results.prev_page_url
+    //     }
+    //   }).catch((error) => {
+    //     console.log(error)
+    //   })
+    // }
 
   },
   components: {
@@ -92,8 +92,8 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain :data="projects" @previous_page="previous_page" @next_page="next_page" @first_page="first_page"
-    @last_page="last_page" />
+  <AppMain :data="projects" @previous_page="getProjects(previous_page_url)" @next_page="getProjects(this.next_page_url)"
+    @first_page="getProjects((this.apiBaseUrl + this.apiUrls.projects))" @last_page="getProjects(this.last_page_url)" />
   <AppFooter />
 </template>
 
