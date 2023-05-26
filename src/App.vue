@@ -26,8 +26,12 @@ export default {
     getProjects(url) {
       axios.get(url).then((response) => {
         this.projects = response.data.results;
-        this.last_page_url = response.data.results.last_page_url
-        this.first_page_url = response.data.results.first_page_url
+        if (!this.last_page_url) {
+          this.last_page_url = response.data.results.last_page_url
+        }
+        if (!this.first_page_url) {
+          this.first_page_url = response.data.results.first_page_url
+        }
         this.next_page_url = response.data.results.next_page_url
         if (response.data.results.prev_page_url) {
           this.previous_page_url = response.data.results.prev_page_url
