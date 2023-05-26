@@ -27,16 +27,16 @@ export default {
       axios.get(url).then((response) => {
         this.projects = response.data.results;
         // SE L'URL DELLA PRIMA PAGINA NON E' STATO SETTATO... SETTALO 
-        this.first_page_url = !this.first_page_url ? response.data.results.first_page_url : this.first_page_url;
+        this.first_page_url = !this.first_page_url || response.data.results.first_page_url;
 
         // SE L'URL DELL'ULTIMA PAGINA NON E' STATO SETTATO... SETTALO 
-        this.last_page_url = !this.last_page_url ? response.data.results.last_page_url : this.last_page_url;
+        this.last_page_url = !this.last_page_url || response.data.results.last_page_url;
 
         // SETTA L'URL DELLA PROSSIMA PAGINA 
         this.next_page_url = response.data.results.next_page_url
 
         // SE E' PRESENTE NEI RISULTATI, SETTA L'URL DELLA PAGINA PRECEDENTE 
-        this.previous_page_url = response.data.results.prev_page_url ? response.data.results.prev_page_url : this.previous_page_url;
+        this.previous_page_url = response.data.results.prev_page_url || response.data.results.prev_page_url;
       }).catch((error) => {
         console.log(error)
       })
