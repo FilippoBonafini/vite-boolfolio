@@ -2,6 +2,9 @@
     <div class="container my-5">
         <h1>{{ project.title }}</h1>
         <p>{{ project.description }}</p>
+        <div class="d-flex gap-1" v-if="project.tecnologies">
+            <span class="badge bg-secondary" v-for="tecnology in project.tecnologies">{{ tecnology.name }}</span>
+        </div>
     </div>
 </template>
 
