@@ -1,29 +1,41 @@
 <template>
     <header>
-        <div class="container">
-            <div class="d-flex justify-content-between">
-                <div class="logo">Projects</div>
-                <nav>
-                    <ul class="list-unstyled m-0 p-0 gap-3 d-flex">
-                        <li>
-                            <RouterLink :to="{ name: 'home' }" class="nav-link">
-                                home
-                            </RouterLink>
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">My projects</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <RouterLink :to="{ name: 'home' }" class="nav-link">
+                                    home
+                                </RouterLink>
+                            </a>
                         </li>
-                        <li>
-                            <RouterLink :to="{ name: 'projects' }" class="nav-link">
-                                projects
-                            </RouterLink>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <RouterLink :to="{ name: 'projects' }" class="nav-link">
+                                    projects
+                                </RouterLink>
+                            </a>
                         </li>
-                        <li>
-                            <RouterLink :to="{ name: 'about' }" class="nav-link">
-                                About
-                            </RouterLink>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <RouterLink :to="{ name: 'about' }" class="nav-link">
+                                    About
+                                </RouterLink>
+                            </a>
                         </li>
                     </ul>
-                </nav>
+                </div>
             </div>
-        </div>
+        </nav>
+
     </header>
 </template>
 
@@ -33,9 +45,3 @@ export default {
 }
 </script>
 
-<style scoped>
-header {
-    padding: 20px;
-    background-color: rgb(119, 241, 170);
-}
-</style>
