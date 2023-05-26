@@ -6,7 +6,6 @@
                     class="btn btn-primary">PRIMA PAGINA</button>
                 <button :disabled="this.projects.current_page === 1" @click="getProjects(previous_page_url)"
                     class="btn btn-primary">INDIETRO</button>
-
             </div>
             <div class="d-flex text-center">
                 <h3>Page: {{ this.projects.current_page }}</h3>
@@ -16,13 +15,8 @@
                     @click="getProjects(next_page_url)" type="button" class="btn btn-primary">AVANTI</button>
                 <button :disabled="this.projects.last_page === this.projects.current_page"
                     @click="getProjects(last_page_url)" class="btn btn-primary">ULTIMA PAGINA</button>
-
             </div>
         </div>
-
-
-
-
         <div class="row my-2 gy-4 col">
             <div v-for="project in projects.data" class="col col-md-4">
                 <AppCard :image="project.image" :title="project.title" :slug="project.slug"
@@ -77,7 +71,5 @@ export default {
             })
         }
     },
-
 }
-
 </script>
