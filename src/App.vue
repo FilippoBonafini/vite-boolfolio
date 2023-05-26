@@ -56,9 +56,3 @@ export default {
     @first_page="getProjects(first_page_url)" @last_page="getProjects(last_page_url)" />
   <AppFooter />
 </template>
-
-
-<style lang="scss">
-//versione 1 - inclusione via app.vue
-// @use './assets/scss/main.scss' as *;
-</style>
