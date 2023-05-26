@@ -92,8 +92,8 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain :data="projects" @previous_page="getProjects(previous_page_url)" @next_page="getProjects(this.next_page_url)"
-    @first_page="getProjects((this.apiBaseUrl + this.apiUrls.projects))" @last_page="getProjects(this.last_page_url)" />
+  <AppMain :data="projects" @previous_page="getProjects(previous_page_url)" @next_page="getProjects(next_page_url)"
+    @first_page="getProjects(first_page_url)" @last_page="getProjects(last_page_url)" />
   <AppFooter />
 </template>
 
