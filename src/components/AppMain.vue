@@ -14,7 +14,7 @@
             </div>
             <!-- v-if="this.data.current_page === this.data.last_page" -->
         </div>
-        <div class="row my-2 gy-2">
+        <div class="row my-2 gy-4">
             <div v-for="project in data.data" class="col col-md-4">
                 <AppCard :image="project.image" :title="project.title" :description="project.description" />
             </div>
