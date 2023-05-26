@@ -4,8 +4,22 @@
             <div class="d-flex justify-content-between">
                 <div class="logo">Projects</div>
                 <nav>
-                    <ul class="list-unstyled m-0 p-0 gap-3">
-                        <li>Home</li>
+                    <ul class="list-unstyled m-0 p-0 gap-3 d-flex">
+                        <li>
+                            <RouterLink :to="{ name: 'home' }" class="nav-link">
+                                home
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink :to="{ name: 'projects' }" class="nav-link">
+                                projects
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink :to="{ name: 'about' }" class="nav-link">
+                                About
+                            </RouterLink>
+                        </li>
                     </ul>
                 </nav>
             </div>
