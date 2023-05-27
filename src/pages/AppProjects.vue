@@ -82,6 +82,9 @@ export default {
 
                 // SE E' PRESENTE NEI RISULTATI, SETTA L'URL DELLA PAGINA PRECEDENTE 
                 this.previous_page_url = response.data.results.prev_page_url ? response.data.results.prev_page_url : this.previous_page_url;
+                if (this.next_page_url) {
+                    this.loadStatus = true
+                }
             }).catch((error) => {
                 console.log(error)
             })
@@ -93,7 +96,7 @@ export default {
 
             if (scrollPosition >= documentHeight) {
                 clearTimeout(this.scrollTimeout);
-                this.scrollTimeout = setTimeout(this.loadNextPage, 1000); // Ritardo di 1 secondo (1000 millisecondi)
+                this.scrollTimeout = setTimeout(this.loadNextPage, 300); // Ritardo di 1 secondo (1000 millisecondi)
             }
         },
 
